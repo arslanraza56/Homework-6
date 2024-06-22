@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    
+        
+    
+        
+    </style>
+
+    <style>
+        #Arslan {
+            background-color: rgb(60, 31, 225);
+            color: blue;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: 600;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+    <form id="tweetForm">
+        <label for="tweetImage"> Image URL:</label>
+        <input type="text" id="tweetImage" name="tweetImage" required><br><br>
+        <label for="tweetDescription">Tweet Description:</label>
+        <textarea id="tweetDescription" name="tweetDescription" required></textarea><br><br>
+        <button type="button" id="saveButton">Submit</button>
+    </form>
+</center>
+
+
+
+<br><br>
+
+
+</body>
+
+<script>
+    const btn = document.getElementById("saveButton");
+    btn.addEventListener('click', () => {
+        async function save() {
+            const textImage = document.getElementById("tweetImage").value
+            const textDescription = document.getElementById("tweetDescription").value
+            const api = await fetch('https://p2pclouds.up.railway.app/v1/learn/tweet/save',
+             {
+                method: "POST",
+                headers: {
+                    'Content-Type': "application/json",
+                },
+                body: JSON.stringify({
+                    tweetImage: tweetImage,
+                    tweetDescription: tweetDescription
+                })
+            })
+            const res = await api.json();   KeyboardEvent
+            if (res.status === 'success') {
+                alert("your form submit");
+                console.log(res);
+            }
+            else {
+                alert("error while fetching")
+            }
+        }
+        save()
+    })
+</script>
+
+</html>
